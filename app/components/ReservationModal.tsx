@@ -6,6 +6,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Calendar, Phone, MapPin, Users, Clock, BabyIcon as Child } from "lucide-react"
 
+import { submitReservation } from "@/services/booking"
 interface ReservationModalProps {
   isOpen: boolean
   onClose: () => void
@@ -33,19 +34,18 @@ export default function ReservationModal({ isOpen, onClose }: ReservationModalPr
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    setIsSubmitting(false)
-    setShowSuccess(true)
+  try {
+    const response = await submitReservation(formData);
+    setIsSubmitting(false);
+    setShowSuccess(true);
 
     // Reset form after 3 seconds and close modal
     setTimeout(() => {
-      setShowSuccess(false)
+      setShowSuccess(false);
       setFormData({
         name: "",
         phone: "",
@@ -55,11 +55,16 @@ export default function ReservationModal({ isOpen, onClose }: ReservationModalPr
         departureTime: "",
         adults: "1",
         children: "0",
-      })
-      onClose()
-    }, 3000)
+      });
+      onClose();
+    }, 3000);
+  } catch (error: any) {
+    setIsSubmitting(false);
+    console.error("Reservation submission failed:", error.message);
+    // Optionally show an error message to the user
+    alert("Failed to submit reservation: " + error.message);
   }
-
+};
   const isFormValid = formData.name && formData.phone && formData.location && formData.checkIn && formData.checkOut
 
   return (

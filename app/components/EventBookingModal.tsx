@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Calendar, Phone, Mail, Users, MapPin } from "lucide-react"
-
+import { submitEventBooking } from "@/services/booking"
 interface EventBookingModalProps {
   isOpen: boolean
   onClose: () => void
@@ -45,19 +45,18 @@ export default function EventBookingModal({ isOpen, onClose }: EventBookingModal
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    setIsSubmitting(false)
-    setShowSuccess(true)
+  try {
+    const response = await submitEventBooking(formData);
+    setIsSubmitting(false);
+    setShowSuccess(true);
 
     // Reset form after 3 seconds and close modal
     setTimeout(() => {
-      setShowSuccess(false)
+      setShowSuccess(false);
       setFormData({
         name: "",
         email: "",
@@ -65,11 +64,16 @@ export default function EventBookingModal({ isOpen, onClose }: EventBookingModal
         eventType: "",
         eventDate: "",
         eventDetails: "",
-      })
-      onClose()
-    }, 3000)
+      });
+      onClose();
+    }, 3000);
+  } catch (error: any) {
+    setIsSubmitting(false);
+    console.error("Event booking submission failed:", error.message);
+    // Optionally show an error message to the user
+    alert("Failed to submit event booking: " + error.message);
   }
-
+};
   const isFormValid = formData.name && formData.phone && formData.eventType && formData.eventDate
 
   return (
