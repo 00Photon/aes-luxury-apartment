@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-blue: #0066cc;
+  --primary-blue-dark: #0052a3;
+  --primary-blue-light: #3385d6;
+  --primary-red: #dc2626;
+  --primary-red-dark: #b91c1c;
+  --primary-red-light: #ef4444;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+  }
+
+  .btn-accent {
+    @apply bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+  }
+
+  .section-padding {
+    @apply py-12 sm:py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  .gradient-blue-red {
+    @apply bg-gradient-to-r from-blue-600 to-red-600;
+  }
+
+  .text-brand-blue {
+    @apply text-blue-600;
+  }
+
+  .text-brand-red {
+    @apply text-red-600;
+  }
+
+  .bg-brand-blue {
+    @apply bg-blue-600;
+  }
+
+  .bg-brand-red {
+    @apply bg-red-600;
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .section-padding {
+      @apply py-8 px-4;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-accent {
+      @apply text-sm px-4 py-2;
+    }
+  }
+}
