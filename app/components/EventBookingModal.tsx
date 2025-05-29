@@ -6,6 +6,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Calendar, Phone, Mail, Users, MapPin } from "lucide-react"
 import { submitEventBooking } from "@/services/booking"
+import jsPDF from "jspdf"
 interface EventBookingModalProps {
   isOpen: boolean
   onClose: () => void
@@ -66,7 +67,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         eventDetails: "",
       });
       onClose();
-    }, 3000);
+    }, 6000);
   } catch (error: any) {
     setIsSubmitting(false);
     console.error("Event booking submission failed:", error.message);
@@ -75,6 +76,23 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 };
   const isFormValid = formData.name && formData.phone && formData.eventType && formData.eventDate
+
+   // PDF generation function
+  const generatePDF = () => {
+    const doc = new jsPDF()
+    doc.setFontSize(18)
+    doc.text("Event Booking Confirmation", 14, 20)
+    doc.setFontSize(12)
+    doc.text(`Name: ${formData.name}`, 14, 40)
+    doc.text(`Email: ${formData.email || "N/A"}`, 14, 50)
+    doc.text(`Phone: ${formData.phone}`, 14, 60)
+    doc.text(`Event Type: ${formData.eventType}`, 14, 70)
+    doc.text(`Event Date: ${formData.eventDate}`, 14, 80)
+    doc.text("Additional Details:", 14, 90)
+    const splitDetails = doc.splitTextToSize(formData.eventDetails || "N/A", 180)
+    doc.text(splitDetails, 14, 100)
+    doc.save("event-booking-confirmation.pdf")
+  }
 
   return (
     <AnimatePresence>
@@ -323,7 +341,14 @@ const handleSubmit = async (e: React.FormEvent) => {
                     📞 For urgent inquiries, please call us directly at +234(0)8035536121
                   </p>
                 </div>
-                <p className="text-sm text-gray-500">This window will close automatically...</p>
+                <button
+                  onClick={generatePDF}
+                  className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+                >
+                  Download Confirmation as PDF
+                </button>
+
+                <p className="text-sm text-gray-500">This window will close automatically after 30...</p>
               </motion.div>
             )}
           </motion.div>

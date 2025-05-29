@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { X, Calendar, Phone, MapPin, Users, Clock, BabyIcon as Child } from "lucide-react"
 
 import { submitReservation } from "@/services/booking"
+import jsPDF from "jspdf"
 interface ReservationModalProps {
   isOpen: boolean
   onClose: () => void
@@ -60,7 +61,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         room_categories: ""
       });
       onClose();
-    }, 15000);
+    }, 6000);
   } catch (error: any) {
     setIsSubmitting(false);
     console.error("Reservation submission failed:", error.message);
@@ -69,6 +70,55 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 };
   const isFormValid = formData.name && formData.phone && formData.location && formData.checkIn && formData.checkOut
+
+    const generatePDF = () => {
+  const doc = new jsPDF()
+
+  // Title - bold and larger font
+  doc.setFont("helvetica", "bold")
+  doc.setFontSize(18)
+  doc.text("Reservation Confirmation", 14, 20)
+
+  // Reset font to normal for details
+  doc.setFont("helvetica", "normal")
+  doc.setFontSize(12)
+  let y = 40
+  const lineHeight = 10
+
+  doc.text(`Name: ${formData.name}`, 14, y)
+  y += lineHeight
+  doc.text(`Phone: ${formData.phone}`, 14, y)
+  y += lineHeight
+  doc.text(`Location: ${formData.location}`, 14, y)
+  y += lineHeight
+  doc.text(`Check-in Date: ${formData.checkIn}`, 14, y)
+  y += lineHeight
+  doc.text(`Check-out Date: ${formData.checkOut}`, 14, y)
+  y += lineHeight
+  doc.text(`Departure Time: ${formData.departureTime || "N/A"}`, 14, y)
+  y += lineHeight
+  doc.text(`Adults: ${formData.adults}`, 14, y)
+  y += lineHeight
+  doc.text(`Children: ${formData.children}`, 14, y)
+  y += lineHeight
+
+  // Section title - bold and a bit bigger
+  doc.setFont("helvetica", "bold")
+  doc.setFontSize(14)
+  doc.text("Room Category:", 14, y)
+  y += lineHeight / 2
+
+  // Reset to normal for content
+  doc.setFont("helvetica", "normal")
+  doc.setFontSize(12)
+
+  const splitDetails = doc.splitTextToSize(formData.room_categories || "N/A", 180)
+  doc.text(splitDetails, 14, y)
+
+  doc.save("Reservation-confirmation.pdf")
+}
+
+  
 
   return (
     <AnimatePresence>
@@ -370,7 +420,13 @@ const handleSubmit = async (e: React.FormEvent) => {
                     booking and discuss any special requirements.
                   </p>
                 </div>
-                <p className="text-sm text-gray-500">This window will close automatically after 15 seconds...</p>
+                 <button
+                  onClick={generatePDF}
+                  className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+                >
+                  Download Confirmation as PDF
+                </button>
+                <p className="text-sm text-gray-500">This window will close automatically after 30 seconds...</p>
               </motion.div>
             )}
           </motion.div>

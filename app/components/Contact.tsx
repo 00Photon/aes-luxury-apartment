@@ -9,8 +9,8 @@ export default function Contact() {
   const [showReservationModal, setShowReservationModal] = useState(false)
 
   // AES Luxury Apartment coordinates
-  const latitude = 9.063
-  const longitude = 7.501
+  const latitude = 9.0423732
+  const longitude = 7.4133771
   const address = "Plot 1118, Daki Biu District, Along Jabi/Airport Road, Opposite Citec Estate, Abuja"
 
   const contactInfo = [
