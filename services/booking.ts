@@ -10,6 +10,7 @@ interface ReservationFormData {
   departureTime: string;
   adults: string;
   children: string;
+  room_categories: string;
 }
 
 interface EventBookingFormData {
@@ -44,6 +45,7 @@ export const submitReservation = async (formData: ReservationFormData) => {
       departure_time: formData.departureTime || null,
       adults: parseInt(formData.adults, 10),
       children: parseInt(formData.children, 10),
+      room_categories:formData.room_categories,
     };
 
     const response = await fetch(`${API_BASE_URL}/make-reservation`, {

@@ -22,12 +22,12 @@ export default function Contact() {
     {
       icon: Phone,
       title: "Phone Numbers",
-      details: ["+234(0)8035536121", "+234(0)8095316857"],
+      details: ["+234(0) 8095316575", "+234(0) 8035356121"],
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["info@aesluxuryapartment.com", "reservations@aesluxuryapartment.com"],
+      details: [ "reservations@aesluxury.com"],
     },
     {
       icon: Clock,
@@ -114,7 +114,7 @@ export default function Contact() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Plane className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-600">15 minutes from Nnamdi Azikiwe Airport</span>
+                  <span className="text-gray-600">37 minutes from Nnamdi Azikiwe Airport</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Car className="w-5 h-5 text-red-600" />

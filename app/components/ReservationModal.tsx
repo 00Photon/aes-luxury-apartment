@@ -22,6 +22,8 @@ export default function ReservationModal({ isOpen, onClose }: ReservationModalPr
     departureTime: "",
     adults: "1",
     children: "0",
+    room_categories: "",
+    
   })
   const [showSuccess, setShowSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -55,9 +57,10 @@ const handleSubmit = async (e: React.FormEvent) => {
         departureTime: "",
         adults: "1",
         children: "0",
+        room_categories: ""
       });
       onClose();
-    }, 3000);
+    }, 15000);
   } catch (error: any) {
     setIsSubmitting(false);
     console.error("Reservation submission failed:", error.message);
@@ -257,7 +260,51 @@ const handleSubmit = async (e: React.FormEvent) => {
                           </select>
                         </div>
                       </div>
+
+                    
+
+
                     </div>
+
+                      {/* Room Categories */}
+                  <div className="w-full">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Room Category
+                  </label>
+                  <div className="relative w-full">
+                    <svg
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M3 10h18M3 6h18M3 14h18M3 18h18" />
+                    </svg>
+                    <select
+                      name="room_categories"
+                      value={formData.room_categories}
+                      onChange={handleInputChange}
+                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors duration-300 appearance-none bg-white text-sm"
+                    >
+                      <option value="">Select a room category</option>
+                      {[
+                        "Standard King Room",
+                        "Deluxe Studio Apartment",
+                        "Superior Suite Apartment",
+                        "Royal Suite Apartment",
+                        "Executive Suite Apartment (2 Bedroom)",
+                        "Luxury Suite Apartment (2 Bedroom)",
+                      ].map((room) => (
+                        <option key={room} value={room}>
+                          {room}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+
                   </div>
 
                   {/* Submit Button */}
@@ -323,7 +370,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     booking and discuss any special requirements.
                   </p>
                 </div>
-                <p className="text-sm text-gray-500">This window will close automatically...</p>
+                <p className="text-sm text-gray-500">This window will close automatically after 15 seconds...</p>
               </motion.div>
             )}
           </motion.div>

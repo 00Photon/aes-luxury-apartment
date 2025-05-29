@@ -48,10 +48,10 @@ export default function Navigation() {
                     scrolled ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  AES Luxury
+                 AES LUXURY 
                 </h1>
                 <p className={`text-sm transition-colors duration-300 ${scrolled ? "text-gray-600" : "text-gray-200"}`}>
-                  Apartment
+                  APARTMENTS
                 </p>
               </div>
             </motion.div>

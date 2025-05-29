@@ -14,7 +14,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-hotel-room.jpg"
+          src="/images/background.jpg"
           alt="AES Luxury Apartment - Elegant Hotel Room Interior"
           fill
           className="object-cover"
@@ -37,7 +37,7 @@ export default function Hero() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="flex items-center justify-center space-x-1 mb-4"
           >
-            {[...Array(5)].map((_, i) => (
+            {[...Array(3)].map((_, i) => (
               <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
             ))}
           </motion.div>
@@ -50,7 +50,8 @@ export default function Hero() {
           >
             Welcome to
             <span className="block bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
-              AES Luxury Apartment
+              AES LUXURY APARTMENTS
+              
             </span>
           </motion.h1>
 
@@ -75,9 +76,9 @@ export default function Hero() {
             >
               Book Your Stay
             </button>
-            <button className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 bg-white/10 border-white text-white hover:bg-red-600 hover:text-white hover:border-red-600 w-full sm:w-auto">
+            {/* <button className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 bg-white/10 border-white text-white hover:bg-red-600 hover:text-white hover:border-red-600 w-full sm:w-auto">
               View Rooms
-            </button>
+            </button> */}
           </motion.div>
 
           <motion.div

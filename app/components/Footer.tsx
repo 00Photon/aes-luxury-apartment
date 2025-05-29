@@ -35,26 +35,20 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <motion.a
-                href="#"
+                href="https://www.facebook.com/share/1ARwzjjiqa"
                 whileHover={{ scale: 1.1 }}
                 className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300"
               >
                 <Facebook className="w-5 h-5" />
               </motion.a>
               <motion.a
-                href="#"
+                href="https://www.instagram.com/aesluxuryapartmentabj?igsh=czM2ZWV0ZjV2aXlw"
                 whileHover={{ scale: 1.1 }}
                 className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300"
               >
                 <Instagram className="w-5 h-5" />
               </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1 }}
-                className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300"
-              >
-                <Twitter className="w-5 h-5" />
-              </motion.a>
+
             </div>
           </motion.div>
 
@@ -103,8 +97,8 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
                 <div className="text-gray-300 text-sm">
-                  <p>+234(0)8035536121</p>
-                  <p>+234(0)8095316857</p>
+                  <p>+234(0) 8095316575</p>
+                  <p>+234(0) 8035356121</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
