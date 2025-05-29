@@ -48,6 +48,13 @@ export default function Footer() {
               >
                 <Instagram className="w-5 h-5" />
               </motion.a>
+              <motion.a
+                href="https://wa.me/qr/F7GIUH6NSRKWA1"
+                whileHover={{ scale: 1.1 }}
+                className="w-10 h-10 bg-green-600 hover:bg-green-700 rounded-full flex items-center justify-center transition-colors duration-300"
+              >
+                <Phone className="w-5 h-5" />
+              </motion.a>
 
             </div>
           </motion.div>
@@ -104,7 +111,7 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-red-400 flex-shrink-0" />
                 <div className="text-gray-300 text-sm">
-                  <p>info@aesluxuryapartment.com</p>
+                  <p>Onlinereservations@aesluxury.com </p>
                 </div>
               </div>
             </div>

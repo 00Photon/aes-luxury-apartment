@@ -27,7 +27,7 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      details: [ "reservations@aesluxury.com"],
+      details: [ "Onlinereservations@aesluxury.com", "reservations@aesluxury.com"],
     },
     {
       icon: Clock,
