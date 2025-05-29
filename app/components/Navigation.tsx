@@ -78,8 +78,11 @@ export default function Navigation() {
                   scrolled ? "text-gray-600" : "text-gray-200"
                 }`}
               >
-                <Phone className="w-4 h-4 text-red-600" />
-                <span>+234(0)8035536121</span>
+                <Phone className="w-4 h-4 text-green-600 border" />
+               <a href="https://wa.me/2348035536121" target="_blank" rel="noopener noreferrer">
+                <span>+234(0)08095316575</span>
+              </a>
+
               </div>
               <button onClick={() => setShowReservationModal(true)} className="btn-primary">
                 Book Now
