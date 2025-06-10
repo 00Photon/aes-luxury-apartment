@@ -27,7 +27,7 @@ export default function Rooms() {
     },
     {
       name: "Deluxe Studio Apartment",
-      image: "/images/deluxe-studio-apartment.png",
+      image: "/images/duluxe.png",
       prices: {
         single: "₦70,000.00",
         double: "₦75,000.00",
@@ -37,7 +37,7 @@ export default function Rooms() {
     },
     {
       name: "Superior Suite Apartment",
-      image: "/images/superior-suite-apartment.jpg",
+      image: "/images/luxurious.png",
       prices: {
         single: "₦100,000.00",
         double: "₦95,000.00",
